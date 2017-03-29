@@ -1,0 +1,15 @@
+@media only screen and(max-width:992px){
+  @import 'sp.scss'
+}
+
+@media only screen and(min-width:992px){
+  @import 'pc.scss'
+}
+
+$fontSize:20;
+@while $fontSize <= 40{
+  .font-#{$fontSize}{
+      font-size:#{$fontSize}px;
+  }
+  $fontSize:$fontSize + 4;
+}

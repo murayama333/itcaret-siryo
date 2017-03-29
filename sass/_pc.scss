@@ -1,0 +1,55 @@
+*{
+
+}
+
+body{
+    font-size: 18px;
+}
+
+h1,h2,h3,h4,h5,h6{
+  text-align: center;
+}
+
+h1{
+  font-size: 40px;
+}
+
+.ballon-pink {
+    width: 80%;
+    padding: 10px 10px 10px 30px;
+    background: #f6dddd;
+    border-radius: 3px;
+    position: relative;
+}
+
+.ballon-pink::before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #f6dddd transparent transparent transparent;
+    bottom: -40px;
+    left: 20px;
+    transform: skew(-30deg , 0);
+}
+
+.ballon-aqua {
+    width: 80%;
+    padding: 15px;
+    background: #e5e5f6;
+    border-radius: 3px;
+    position: relative;
+}
+
+.ballon-aqua::before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    border-width: 20px;
+    border-style: solid;
+    border-color: #e5e5f6 transparent transparent transparent;
+    bottom: -40px;
+    left: 20px;
+    transform: skew(-30deg , 0);
+}

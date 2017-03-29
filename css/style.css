@@ -1,0 +1,47 @@
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center; }
+
+  h1 {
+    font-size: 40px; }
+
+body{
+  background:#E9EBEE;
+}
+
+
+/*table {
+  margin: 15px auto;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+th {
+  background: #eee;
+}
+th {
+  width:13%;
+  height: 7px;
+  text-align: center;
+}
+tr.week-name{
+  height:20px;
+}
+
+td {
+  width:13%;
+  height:100%;
+  border:1px solid #aaa;
+}*/
+
+.youbi_0 {
+  color: red;
+}
+.youbi_6 {
+  color: blue;
+}
+.today {
+  font-weight: bold;
+}
+.gray {
+  color: #dedede;
+}
