@@ -3,7 +3,7 @@ require("../common/functions.php");
 require("../common/Users.php");
 $Users = new Users();
 
-$userLists = $Users->get_userLists();
+$userLists = $Users->get_user_lists();
 $adminId = check_admin_session();
 
 ?>

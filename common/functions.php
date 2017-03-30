@@ -36,14 +36,17 @@ function send_error_page(){
 }
 
 function check_admin_session(){
+  // 副作用のある関数（session_start関数）は、共通関数の中で呼び出すとわかりにくいので、コントローラ側でやる方がいいかな。
   session_start();
   $adminId = $_SESSION['adminId'];
   if (!is_null($adminId)) {
     return $adminId;
   }else{
+    // 2回呼んでも問題ないならいいけど。あまり綺麗じゃないですよね。
+    // session_startは各コントローラで適宜呼び出すのが良いかと。
     session_start();
     $_SESSION['loginMsg']="ログアウトされました。";
-    redirect('admin/login.php');
+      redirect('admin/login.php');
   }
 }
 
@@ -209,7 +212,7 @@ function check_user_session(){
 //   }
 // }
 
-// function get_userLists(){
+// function get_user_lists(){
 //   try {
 //     $pdo = new PDO("mysql:host=localhost;dbname=kmcSchool_db",'root','');
 //     $st= $pdo->prepare("select userId,userName,mailAddress,tel,userType,registerDate from userMaster");
@@ -281,7 +284,7 @@ function check_user_session(){
 //   }
 // }
 //
-// function get_userInfo($userId){
+// function get_user_info($userId){
 //   try {
 //     $pdo= new PDO("mysql:host=localhost;dbname=kmcSchool_db","root","");
 //     $st = $pdo->prepare("select userId,passWord,userName,mailAddress,tel from userMaster where userId=:userId");

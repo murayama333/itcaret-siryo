@@ -5,7 +5,7 @@ require("../common/Users.php");
 $adminId = check_admin_session();
 
 $Users = new Users();
-$userInfo = $Users->get_userInfo($_GET['userId']);
+$userInfo = $Users->get_user_info($_GET['userId']);
 
 ?>
 

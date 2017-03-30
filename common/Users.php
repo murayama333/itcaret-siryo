@@ -14,14 +14,17 @@ class Users{
       $st->bindParam(':userId',$userId);
       $st->bindParam(':passWord',$passWord);
       $st->execute();
-    } catch (PDOException $e) {
-      die($e->getMessage());
-    }finally{
+
       if ($st->fetchAll()) {
         return true;
       }else{
         return false;
       }
+    } catch (PDOException $e) {
+      // 本番稼動時は、エラーメッセージはブラウザに表示しないように、display_errorsを設定するなど
+      die($e->getMessage());
+    }finally{
+      $st = NULL;
     }
   }
 
@@ -32,16 +35,16 @@ class Users{
       $st->bindParam(':userId',$userId);
       $st->bindParam(':passWord',$passWord);
       $st->execute();
-    } catch (PDOException $e) {
-      die($e->getMessage());
-    }finally{
       if($st->fetchAll()){
         return true;
       }else{
         return false;
       }
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }finally{
+      $st = NULL;
     }
-
   }
 
   // ユーザー追加メソッド
@@ -60,6 +63,7 @@ class Users{
       $e->getMessage();
     }finally{
       $st=NULL;
+      // $pdoまでNULLにするのか、他のメソッドと統一感があるといいですね。
       $pdo=NULL;
     }
   }
@@ -98,35 +102,33 @@ class Users{
   }
 
   // ユーザーリストの取得
-  public function get_userLists(){
+  public function get_user_lists(){
     try {
       $st= $this->pdo->prepare("select userId,userName,mailAddress,tel,userType,registerDate from userMaster");
       $st->execute();
-    } catch (PDOException $e) {
-      die($e->getMessage());
-    }finally{
       if ($userLists = $st->fetchAll()) {
-        $st=NULL;
-        $pdo=NULL;
         return $userLists;
       }else{
         return false;
       }
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }finally{
+      $st=NULL;
+      $pdo=NULL;
     }
   }
 
   // ユーザー情報の取得
-  function get_userInfo($userId){
+  function get_user_info($userId){
     try {
       $st = $this->pdo->prepare("select userId,passWord,userName,mailAddress,tel from userMaster where userId=:userId");
       $st->bindParam(':userId',$userId);
       $st->execute();
+      return $st->fetchAll();
     } catch (PDOException $e) {
       $e->getMessage();
     }finally{
-      if ($userInfo = $st->fetchAll()) {
-        return $userInfo;
-      }
       $st=NULL;
       $pdo=NULL;
     }
